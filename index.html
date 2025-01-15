@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Kevincin</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            text-align: center;
+            color: white;
+            padding: 0;
+            margin: 0;
+            background-image: url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 350px;
+            margin: 0 auto;
+            background: rgba(27, 38, 59, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border: 5px solid #e63946;
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 5px; 
+        }
+
+        .countdown div {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            font-size: 1.5em;
+            color: #e63946;
+            border-radius: 8px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 800px) {
+            .container {
+                padding: 15px;
+                gap: 15px; 
+            }
+
+            video {
+                width: 100%; 
+            }
+
+
+            .countdown div {
+                font-size: 1.2em;
+                min-width: 50px;
+            }
+        }
+
+    </style>
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date('2025-03-26T18:00:00');
+            const now = new Date();
+            const timeDiff = eventDate - now;
+
+            if (timeDiff > 0) {
+                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = `${days} D`;
+                document.getElementById('hours').textContent = `${hours} H`;
+                document.getElementById('minutes').textContent = `${minutes} M`;
+                document.getElementById('seconds').textContent = `${seconds} S`;
+            } else {
+                document.getElementById('countdown').textContent = "¡Es hora de la fiesta!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <video id="video" loop controls autoplay muted>
+            <source src="Kevincin.mp4" type="video/mp4">
+            Tu navegador no soporta vídeos.
+        </video>
+
+
+        <div class="countdown" id="countdown">
+            <div id="days">Cargando días</div>
+            <div id="hours">Cargando horas</div>
+            <div id="minutes">Cargando minutos</div>
+            <div id="seconds">Cargando segundos</div>
+        </div>
+    </div>
+</body>
+</html>
